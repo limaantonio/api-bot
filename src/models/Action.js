@@ -52,7 +52,7 @@ const ActionSchema = new mongoose.Schema({
   },
 
   passingScore: {
-    type: SVGAnimatedNumberList,
+    type: String,
     require: false,
   },
 

@@ -25,7 +25,7 @@ module.exports = {
   //    }
   //  }
 
-     fulfillmentText(request, response){
+    async fulfillmentText(request, response){
      var intentName = request.body.queryResult.intent.displayName;
 
      if(intentName === 'processo.seletivo'){
@@ -80,16 +80,10 @@ module.exports = {
           aluno_curso,
           endereco
         }
-
-        await Alunos.create(aluno);
-
-        return response.json("fullfillmentText", "Voce foi cadastrado no nosso processo seletivo");
-      
-
-
-        
       });
+      await Alunos.create(aluno);
 
+      return response.json("fullfillmentText", "Voce foi cadastrado no nosso processo seletivo");
      }
    }
  }
