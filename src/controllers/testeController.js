@@ -81,7 +81,7 @@ module.exports = {
           endereco
         }
 
-        await Alunos.create(request.body);
+        await Alunos.create(aluno);
 
         return response.json("fullfillmentText", "Voce foi cadastrado no nosso processo seletivo");
       
