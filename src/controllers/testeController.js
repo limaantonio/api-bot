@@ -64,23 +64,29 @@ module.exports = {
      else if(intentName === 'processo.seletivo-yes'){
 
       var aluno_cep = request.body.queryResult.parameters['aluno-cep'];
+      var aluno_nome;
+      var aluno_cpf;
+      var aluno_curso; 
+
 
       buscaCep(aluno_cep, {sync: false, timeout: 1000})
       .then(endereco => {
 
-        var aluno_nome = request.body.queryResult.parameters['aluno-cep'];
-        var aluno_cpf = request.body.queryResult.parameters['aluno-cpf'];
-        var aluno_curso = request.body.queryResult.parameters['aluno-curso'];
+         aluno_nome = request.body.queryResult.parameters['aluno-cep'];
+         aluno_cpf = request.body.queryResult.parameters['aluno-cpf'];
+         aluno_curso = request.body.queryResult.parameters['aluno-curso'];
 
         var endereco = endereco.logradoro+"-"+endereco.bairro+","+endereco.localidade+"-"+endereco.uf+"--"+endereco.cep;
-
-        const aluno = {
-          aluno_nome ,
-          aluno_cpf,
-          aluno_curso,
-          endereco
-        }
+       
       });
+
+      const aluno = {
+        aluno_nome ,
+        aluno_cpf,
+        aluno_curso,
+        endereco
+      }
+
       await Alunos.create(aluno);
 
       return response.json("fullfillmentText", "Voce foi cadastrado no nosso processo seletivo");
