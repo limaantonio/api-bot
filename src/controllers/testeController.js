@@ -16,14 +16,13 @@ module.exports = {
    },
 
    fulfillmentText(request, response){
-     response.json({"fulfillmentText": "Primeiro webhook"});
-     //var intentName = request.body.queryResult.intent.displayName;
+     var intentName = request.body.queryResult.intent.displayName;
 
-    //  if(intentName === 'processo.seletivo'){
-    //   response.json({"fulfillmentText": "Processo seletivo"});
-    //  }else if(intentName === 'atendimento.horario'){
-    //   response.json({"fulfillmentText": "Horario de atendimento"});
-    //  }
+     if(intentName === 'processo.seletivo'){
+      response.json({"fulfillmentText": "Processo seletivo"});
+     }else if(intentName === 'atendimento.horario'){
+      response.json({"fulfillmentText": "Horario de atendimento"});
+     }
    }
 
   //   async fulfillmentText(request, response){
