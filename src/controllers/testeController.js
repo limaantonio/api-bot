@@ -16,7 +16,7 @@ module.exports = {
    },
 
    fulfillmentText(request, response){
-     response.json({"fullfilmentText": "Primeiro webhook"});
+     response.json({"fulfillmentText": "Primeiro webhook"});
      //var intentName = request.body.queryResult.intent.displayName;
 
     //  if(intentName === 'processo.seletivo'){
