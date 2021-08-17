@@ -90,7 +90,7 @@ module.exports = {
 
       await Alunos.create(aluno);
 
-      return response.json({"fulfillmentText": "Voce foi cadastrado no nosso processo seletivo"});
+      response.json({"fulfillmentText": "Voce foi cadastrado no nosso processo seletivo"});
      }
    }
  }
