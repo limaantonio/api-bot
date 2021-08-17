@@ -75,18 +75,20 @@ module.exports = {
         var aluno_curso = request.body.queryResult.parameters['aluno-curso'];
 
         var endereco = endereco.logradoro+"-"+endereco.bairro+","+endereco.localidade+"-"+endereco.uf+"--"+endereco.cep;
+
+        const aluno = {
+          aluno_nome ,
+          aluno_cpf,
+          aluno_curso,
+          endereco
+        }
+        
+       
+        await Alunos.create(aluno);
        
       });
 
-      const aluno = {
-        aluno_nome ,
-        aluno_cpf,
-        aluno_curso,
-        endereco
-      }
       
-     
-      await Alunos.create(aluno);
       
 
       response.json({"fulfillmentText": "Voce foi cadastrado no nosso processo seletivo"});
