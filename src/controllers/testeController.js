@@ -81,10 +81,10 @@ module.exports = {
       });
 
       const aluno = {
-        aluno_nome: 'ac' ,
-        aluno_cpf: '848',
-        aluno_curso: 'ciencia',
-        endereco: 'rua tals'
+        aluno_nome,
+        aluno_cpf,
+        aluno_curso,
+        endereco
       }
 
       try{
