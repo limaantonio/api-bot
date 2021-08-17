@@ -25,7 +25,7 @@ module.exports = {
   //    }
   //  }
 
-    async fulfillmentText(request, response){
+     fulfillmentText(request, response){
      var intentName = request.body.queryResult.intent.displayName;
 
      if(intentName == 'processo.seletivo'){
