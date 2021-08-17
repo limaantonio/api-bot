@@ -84,7 +84,7 @@ module.exports = {
         }
         
        
-        Alunos.create(aluno);
+       
        
       });
 
