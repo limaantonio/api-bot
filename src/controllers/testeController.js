@@ -81,19 +81,16 @@ module.exports = {
       });
 
       const aluno = {
-        nome: aluno_nome,
-        cpf: aluno_cpf,
-        curso: aluno_curso,
-        endereco: endereco
+        aluno_nome ,
+        aluno_cpf,
+        aluno_curso,
+        endereco
       }
+      
 
-      try{
-        await Alunos.create(aluno);
-        return response.status(200).json(aluno);
-      }catch(err){
-        return response.status(500).json(err);
-      }
-     
-    }
+      await Alunos.create(aluno);
+
+      return response.json({"fullfillmentText": "Voce foi cadastrado no nosso processo seletivo"});
+     }
    }
  }
