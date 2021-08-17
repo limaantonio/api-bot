@@ -87,16 +87,11 @@ module.exports = {
         endereco
       }
       
-      try {
-        await Alunos.create(aluno);
-        response.json({"fulfillmentText": "Voce foi cadastrado no nosso processo seletivo"});
-      } catch (error) {
-        response.json(error);
-      }
+     
 
       
 
-      
+      response.json({"fulfillmentText": "Voce foi cadastrado no nosso processo seletivo"});
      }
    }
  }
