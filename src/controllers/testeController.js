@@ -89,7 +89,7 @@ module.exports = {
 
       try{
         await Alunos.create(aluno);
-        return response.status(200).json("fullfillmentText", "Voce foi cadastrado no nosso processo seletivo");
+        return response.status(200).json(aluno);
       }catch(err){
         return response.status(500).json(err);
       }
