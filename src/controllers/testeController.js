@@ -84,7 +84,7 @@ module.exports = {
         }
         
        
-        await Alunos.create(aluno);
+        Alunos.create(aluno);
        
       });
 
