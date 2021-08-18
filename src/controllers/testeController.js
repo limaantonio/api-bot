@@ -77,10 +77,10 @@ module.exports = {
         var aluno_curso = request.body.queryResult.parameters['aluno-curso'];
 
       const aluno = {
-        aluno_nome ,
-        aluno_cpf,
-        aluno_curso,
-        endereco
+       nome: aluno_nome ,
+        cpf: aluno_cpf,
+        curso: aluno_curso,
+        endereco: endereco
       }
       
      try {
