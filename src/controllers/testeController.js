@@ -64,21 +64,17 @@ module.exports = {
      else if(intentName === 'processo.seletivo-yes'){
 
       var aluno_cep = request.body.queryResult.parameters['aluno-cep'];
-      var aluno_nome;
-      var aluno_cpf;
-      var aluno_curso; 
+      var endereco; 
 
 
       buscaCep(aluno_cep, {sync: false, timeout: 1000})
       .then(endereco => {
-
-         aluno_nome = request.body.queryResult.parameters['aluno-nome'];
-         aluno_cpf = request.body.queryResult.parameters['aluno-cpf'];
-         aluno_curso = request.body.queryResult.parameters['aluno-curso'];
-
-        var endereco = endereco.logradoro+"-"+endereco.bairro+","+endereco.localidade+"-"+endereco.uf+"--"+endereco.cep;
-       
+        endereco = endereco.logradoro+"-"+endereco.bairro+","+endereco.localidade+"-"+endereco.uf+"--"+endereco.cep;
       });
+
+        var aluno_nome = request.body.queryResult.parameters['aluno-nome'];
+        var aluno_cpf = request.body.queryResult.parameters['aluno-cpf'];
+        var aluno_curso = request.body.queryResult.parameters['aluno-curso'];
 
       const aluno = {
         aluno_nome ,
