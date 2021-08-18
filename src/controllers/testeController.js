@@ -72,7 +72,7 @@ module.exports = {
       buscaCep(aluno_cep, {sync: false, timeout: 1000})
       .then(endereco => {
 
-         aluno_nome = request.body.queryResult.parameters['aluno-cep'];
+         aluno_nome = request.body.queryResult.parameters['aluno-nome'];
          aluno_cpf = request.body.queryResult.parameters['aluno-cpf'];
          aluno_curso = request.body.queryResult.parameters['aluno-curso'];
 
