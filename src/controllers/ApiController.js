@@ -14,7 +14,7 @@ module.exports = {
         {
           "text": {
             "text": [
-              "Deseja salvar seus dados?"
+              "Precisamos de algumas informações."
             ]
           }
         },
