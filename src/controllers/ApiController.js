@@ -52,7 +52,7 @@ module.exports = {
     }
 
     if (intentName === 'revisao') {
-      var revisao_conteudo = request.body.queryResult.parameters['revisao-conteudo'];
+      let revisao_conteudo = request.body.queryResult.parameters['revisao-conteudo'];
       response.json (
         {
           "fulfillmentMessages": [
@@ -71,6 +71,7 @@ module.exports = {
     }
 
     if (intentName === 'revisao.quiz-yes') {
+      console.log(revisao_conteudo);
       if(revisao_conteudo === "banco de dados"){
         response.json (
           {
