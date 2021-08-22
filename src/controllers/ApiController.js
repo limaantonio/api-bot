@@ -31,7 +31,7 @@ module.exports = {
                 {
                   "text": {
                     "text": [
-                      "Como posso te ajudar?"
+                      "Como posso te ajudar? \n 1 - Revisão \n 2 - Orientação \n 3 - Acompanhamento"
                     ],
                   },
                 },
