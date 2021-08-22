@@ -19,11 +19,6 @@ module.exports = {
     response.json({
       "fulfillmentMessages" : [
         {
-          "card": {
-            "title": "card title",
-            "subtitle": "card text",
-            "imageUri": "https://github.com/limaantonio/api-bot/blob/master/public/assets/img/bot.png",
-          },
           "text": {
             "text": [
               "Deseja salvar seus dados?"
