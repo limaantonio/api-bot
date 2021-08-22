@@ -2,19 +2,12 @@ const Action = require('../models/Action')
 const Alunos = require('../models/Alunos')
 var buscaCep = require('busca-cep');
 
-
 module.exports = {
     
-   async criarDados(request, response){
-     const action = await Action.create(request.body);
-
-     return response.status(200).json(action);
-   },
-
   async fulfillmentText(request, response){
     var intentName = request.body.queryResult.intent.displayName;
 
-    if(intentName === 'onboarding.aluno'){
+    if (intentName === 'onboarding.aluno') {
 
     response.json({
       "fulfillmentMessages" : [
@@ -27,35 +20,25 @@ module.exports = {
         },
       ]
     });
-    }
-    else if(intentName === 'onboarding.aluno-yes'){
 
-    var aluno_cep = request.body.queryResult.parameters['aluno-cep'];
-    var endereco; 
-
-
-    buscaCep(aluno_cep, {sync: false, timeout: 1000})
-    .then(endereco => {
-      endereco = endereco.logradoro+"-"+endereco.bairro+","+endereco.localidade+"-"+endereco.uf+"--"+endereco.cep;
-    });
+    } else if (intentName === 'onboarding.aluno-yes') {
 
       var aluno_nome = request.body.queryResult.parameters['aluno-nome'];
-      var aluno_cpf = request.body.queryResult.parameters['aluno-cpf'];
       var aluno_curso = request.body.queryResult.parameters['aluno-curso'];
+      var aluno_semestre = request.body.queryResult.parameters['aluno-semestre'];
 
-    const aluno = {
-      nome: aluno_nome ,
-      cpf: aluno_cpf,
-      curso: aluno_curso,
-      endereco: endereco
-    }
+      const aluno = {
+        nome: aluno_nome ,
+        curso: aluno_curso,
+        semestre: aluno_semestre,
+      }
     
-    try {
-    await Alunos.create(aluno);
-    response.json({"fulfillmentText": "Voce foi cadastrado no nosso processo seletivo"});
-    } catch (error) {
-      return response.json(error)
-    }
+      try {
+        await Alunos.create(aluno);
+          response.json({"fulfillmentText": "Seus dados foram salvos! Podemos continuar nossa conversa."});
+      } catch (error) {
+          return response.json(error)
+      }
     }
   }
  }

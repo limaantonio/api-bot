@@ -6,17 +6,12 @@ const AlunosSchema = new mongoose.Schema({
     require: true,
   },
 
-  cpf: {
+  semestre: {
     type: String,
     require: true,
   },
 
   curso: {
-    type: String,
-    require: true,
-  },
-
-  endereco: {
     type: String,
     require: true,
   },
