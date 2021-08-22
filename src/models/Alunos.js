@@ -6,12 +6,7 @@ const AlunosSchema = new mongoose.Schema({
     require: true,
   },
 
-  semestre: {
-    type: String,
-    require: true,
-  },
-
-  curso: {
+  matricula: {
     type: String,
     require: true,
   },

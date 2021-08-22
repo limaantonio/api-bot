@@ -23,13 +23,11 @@ module.exports = {
 
     } else if (intentName === 'onboarding.aluno-yes') {
       var aluno_nome = request.body.queryResult.parameters['aluno-nome'];
-      var aluno_curso = request.body.queryResult.parameters['aluno-curso'];
-      var aluno_semestre = request.body.queryResult.parameters['aluno-semestre'];
+      var aluno_matricula = request.body.queryResult.parameters['aluno-matricula'];
 
       const aluno = {
         nome: aluno_nome ,
-        curso: aluno_curso,
-        semestre: aluno_semestre,
+        matricula: aluno_matricula,
       }
     
       try {
