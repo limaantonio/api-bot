@@ -23,5 +23,21 @@ module.exports = {
           return response.json(error)
       }
     }
+    else if (intentName === 'onboarding.aluno-no') {
+      
+      response.json (
+        {
+          "fulfillmentMessages": [
+            {
+              "text": {
+                "text": [
+                  "Entendo, entretanto não podemos continuar nossa conversa sem as suas informações."
+                ]
+              }
+            }
+          ]
+        }
+      )
+    }
   }
  }
