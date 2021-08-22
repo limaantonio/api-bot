@@ -51,9 +51,13 @@ module.exports = {
       )
     }
 
-    if (intentName === 'revisao.quiz-yes') {
+    if (intentName === 'revisao.quiz') {
       var revisao_conteudo = request.body.queryResult.parameters['revisao-conteudo'];
 
+      
+    }
+
+    if (intentName === 'revisao.quiz-yes') {
       if(revisao_conteudo == 'banco de dados'){
         response.json (
           {
@@ -71,5 +75,6 @@ module.exports = {
         );
       }
     }
+
   }
  }
