@@ -28,7 +28,7 @@ module.exports = {
     async fulfillmentText(request, response){
      var intentName = request.body.queryResult.intent.displayName;
 
-     if(intentName === 'processo.seletivo'){
+     if(intentName === 'onboarding.aluno'){
 
       response.json({
         "fulfillmentMessages" : [{
