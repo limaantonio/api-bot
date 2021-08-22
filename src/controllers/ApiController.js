@@ -22,7 +22,7 @@ module.exports = {
           "card": {
             "title": "card title",
             "subtitle": "card text",
-            "imageUri": "https://github.com/limaantonio/api-bot/public/assets/img/bot.img",
+            "imageUri": "https://github.com/limaantonio/api-bot/blob/master/public/assets/img/bot.png",
           },
           "text": {
             "text": [
