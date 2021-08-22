@@ -51,7 +51,7 @@ module.exports = {
       )
     }
 
-    if (intentName === 'revisao.quiz') {
+    if (intentName === 'revisao') {
       var revisao_conteudo = request.body.queryResult.parameters['revisao-conteudo'];
       response.json (
         {
