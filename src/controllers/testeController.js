@@ -31,37 +31,29 @@ module.exports = {
      if(intentName === 'onboarding.aluno'){
 
       response.json({
-        "fulfillmentMessages" : [{
+        "fulfillmentMessages" : [
+          {
             "card": {
-              "title" : "Processo seletivo",
-              "subtitle" : "Bem-vindo ao nosso processo seletivo",
-              "imgUrl" : "https://tecnoblog.net/wp-content/uploads/2018/07/bot-twitter-700x394.jpg",
-              // "buttons" : [
-              //   {
-              //     "text" : "button text",
-              //     "postback" : "https://assistant.google.com/"
-              //   }
-              // ]
-            }
-          },
-          {
-            "text" : {
-              "text" : [
-                "Temos os melhores cursos nas areas de Humanas"
+              "title": "card title",
+              "subtitle": "card text",
+              "imageUri": "https://example.com/images/example.png",
+              "buttons": [
+                {
+                  "text": "button text",
+                  "postback": "https://example.com/path/for/end-user/to/follow"
+                }
               ]
-            }
-          },
-          {
-            "text" : {
+            },
+            "text": {
               "text": [
-                "Voce quer participar do processo seletivo?"
+                "Deseja salvar seus dados?"
               ]
             }
-          }
+          },
         ]
       });
      }
-     else if(intentName === 'processo.seletivo-yes'){
+     else if(intentName === 'onboarding.aluno-yes'){
 
       var aluno_cep = request.body.queryResult.parameters['aluno-cep'];
       var endereco; 
