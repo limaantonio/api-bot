@@ -18,13 +18,21 @@ module.exports = {
     
       try {
         await Alunos.create(aluno);
-          response.json(
-            { 
-              "fulfillmentText" : "Seus dados foram salvos! Podemos continuar nossa conversa."
-              + "Como posso te ajudar?"
-              + "1 - Revisão"
-              + "2 - Orientação"
-              + "3 - Seus resultados"
+          response.json (
+            {
+              "fulfillmentMessages": [
+                {
+                  "text": {
+                    "text": [
+                      "Obrigado! Podemos continuar nossa conversa.",
+                      "Como posso te ajudar?",
+                      "1 - Revisão",
+                      "2 - Orientação",
+                      "3 - Seus resultados"
+                    ],
+                  }
+                }
+              ]
             }
           );
       } catch (error) {
