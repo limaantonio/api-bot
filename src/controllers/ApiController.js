@@ -58,7 +58,7 @@ module.exports = {
     }
 
     if (intentName === 'revisao.quiz-yes') {
-      if(revisao_conteudo == 'banco de dados'){
+      if(revisao_conteudo === 'banco de dados'){
         response.json (
           {
             "fulfillmentMessages": [
@@ -73,6 +73,20 @@ module.exports = {
             ]
           }
         );
+      } else {
+        response.json (
+          {
+            "fulfillmentMessages": [
+              {
+                "text": {
+                  "text": [
+                    "Error"
+                  ]
+                }
+              }
+            ]
+          }
+        )
       }
     }
 
