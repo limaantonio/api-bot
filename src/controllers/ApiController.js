@@ -34,8 +34,7 @@ module.exports = {
       } catch (error) {
           return response.json(error)
       }
-    }
-    else if (intentName === 'onboarding.aluno-no') {
+    } else if (intentName === 'onboarding.aluno-no') {
       
       response.json (
         {
@@ -50,6 +49,27 @@ module.exports = {
           ]
         }
       )
+    }
+
+    if (intentName === 'revisao.quiz-yes') {
+      var revisao_conteudo = request.body.queryResult.parameters['revisao-conteudo'];
+
+      if(revisao_conteudo == 'banco de dados'){
+        response.json (
+          {
+            "fulfillmentMessages": [
+              {
+                "text": {
+                  "text": [
+                    " Questão 1 - O que é um banco de dados? \n"
+                    + "Questão 2 - Quais as formas normais?"
+                  ],
+                },
+              },
+            ]
+          }
+        );
+      }
     }
   }
  }
