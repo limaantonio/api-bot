@@ -7,7 +7,7 @@ module.exports = {
   async fulfillmentText(request, response){
     var intentName = request.body.queryResult.intent.displayName;
 
-    if (intentName === 'onboarding.aluno-yes') {
+    if (intentName === 'primeiro.contato-yes') {
 
       response.json({
         "fulfillmentMessages" : [
@@ -26,6 +26,23 @@ module.exports = {
         ]
       });
 
+    } 
+    if (intentName === 'onboarding.aluno-no') {
+      response.json({
+        "fulfillmentMessages" : [
+          {
+            "text": {
+              "text": [
+                "As informações são necessárias para nossa conversa. :)"
+              ]
+            },
+          },
+        ]
+      });
+    }
+
+    if (intentName === 'onboarding.aluno-yes') {
+
       var aluno_nome = request.body.queryResult.parameters['aluno-nome'];
       var aluno_curso = request.body.queryResult.parameters['aluno-curso'];
       var aluno_semestre = request.body.queryResult.parameters['aluno-semestre'];
@@ -42,19 +59,6 @@ module.exports = {
       } catch (error) {
           return response.json(error)
       }
-
-    } else if (intentName === 'onboarding.aluno-no') {
-      response.json({
-        "fulfillmentMessages" : [
-          {
-            "text": {
-              "text": [
-                "As informações são necessárias para nossa conversa. :)"
-              ]
-            },
-          },
-        ]
-      });
     }
   }
  }
