@@ -7,21 +7,7 @@ module.exports = {
   async fulfillmentText(request, response){
     var intentName = request.body.queryResult.intent.displayName;
 
-    if (intentName === 'onboarding.aluno') {
-
-      response.json({
-        "fulfillmentMessages" : [
-          {
-            "text": {
-              "text": [
-                "Ótimo! Precisamos de algumas informações. Quer responder agora?"
-              ]
-            },
-          },
-        ]
-      });
-
-    } else if (intentName === 'onboarding.aluno-yes') {
+    if (intentName === 'onboarding.aluno-yes') {
       var aluno_nome = request.body.queryResult.parameters['aluno-nome'];
       var aluno_matricula = request.body.queryResult.parameters['aluno-matricula'];
 
