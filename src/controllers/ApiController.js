@@ -24,14 +24,17 @@ module.exports = {
                 {
                   "text": {
                     "text": [
-                      "Obrigado! Podemos continuar nossa conversa.",
-                      "Como posso te ajudar?",
-                      "1 - Revisão",
-                      "2 - Orientação",
-                      "3 - Seus resultados"
+                      "Obrigado! Podemos continuar nossa conversa."
                     ],
-                  }
-                }
+                  },
+                },
+                {
+                  "text": {
+                    "text": [
+                      "Como posso te ajudar?"
+                    ],
+                  },
+                },
               ]
             }
           );
