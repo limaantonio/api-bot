@@ -1,11 +1,9 @@
 const express = require('express');
 
-const testeController = require('./controllers/testeController')
+const ApiController = require('./controllers/ApiController')
 
 const routes = express.Router();
 
-routes.get('/', testeController.teste);
-routes.post('/cursowebhook', testeController.fulfillmentText);
-routes.post('/create', testeController.criarDados);
+routes.post('/apiwebhook', ApiController.fulfillmentText);
 
 module.exports = routes;
