@@ -9,19 +9,38 @@ module.exports = {
 
     if (intentName === 'onboarding.aluno') {
 
-    response.json({
-      "fulfillmentMessages" : [
-        {
-          "text": {
-            "text": [
-              "Precisamos de algumas informações."
-            ]
-          }
-        },
-      ]
-    });
+      response.json({
+        "fulfillmentMessages" : [
+          {
+            "text": {
+              "text": [
+                "Ótimo! Precisamos de algumas informações."
+              ]
+            },
+            "text": {
+              "text": [
+                "Quer responder agora?"
+              ]
+            }
+          },
+        ]
+      });
 
-    } else if (intentName === 'onboarding.aluno-yes') {
+    } else if (intentName === 'onboarding.aluno-no') {
+      response.json({
+        "fulfillmentMessages" : [
+          {
+            "text": {
+              "text": [
+                "As informações são necessárias para nossa conversa. :)"
+              ]
+            },
+          },
+        ]
+      });
+    }
+
+    if (intentName === 'onboarding.aluno-yes') {
 
       var aluno_nome = request.body.queryResult.parameters['aluno-nome'];
       var aluno_curso = request.body.queryResult.parameters['aluno-curso'];
