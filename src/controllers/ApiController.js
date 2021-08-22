@@ -53,7 +53,19 @@ module.exports = {
 
     if (intentName === 'revisao.quiz') {
       var revisao_conteudo = request.body.queryResult.parameters['revisao-conteudo'];
-    
+      response.json (
+        {
+          "fulfillmentMessages": [
+            {
+              "text": {
+                "text": [
+                 revisao_conteudo
+                ],
+              },
+            },
+          ]
+        }
+      );
 
       
     }
