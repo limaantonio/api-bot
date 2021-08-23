@@ -53,6 +53,7 @@ module.exports = {
 
     if (intentName === 'revisao') {
       var revisao_conteudo = request.body.queryResult.parameters['revisao-conteudo'];
+      var teste = "testee";
       response.json (
         {
           "fulfillmentMessages": [
@@ -71,6 +72,7 @@ module.exports = {
     }
 
     if (intentName === 'revisao.quiz-yes') {
+      
 
       if(revisao_conteudo === "banco de dados"){
         response.json (
@@ -80,7 +82,7 @@ module.exports = {
                 "text": {
                   "text": [
                     " Questão 1 - O que é um banco de dados? \n"
-                    + "Questão 2 - Quais as formas normais?" + revisao_conteudo
+                    + "Questão 2 - Quais as formas normais?" + revisao_conteudo + teste
                   
                   ],
                 },
@@ -95,7 +97,7 @@ module.exports = {
               {
                 "text": {
                   "text": [
-                    "Error"+revisao_conteudo
+                    "Error"+revisao_conteudo + teste
                   ]
                 }
               }
