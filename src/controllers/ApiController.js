@@ -72,7 +72,7 @@ module.exports = {
     }
 
     if (intentName === 'revisao.quiz-yes') {
-      
+      var revisao_conteudo = request.body.queryResult.parameters['revisao-conteudo'];
 
       if(revisao_conteudo === "banco de dados"){
         response.json (
