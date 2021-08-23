@@ -71,7 +71,7 @@ module.exports = {
     }
 
     if (intentName === 'revisao.quiz-yes') {
-      console.log(revisao_conteudo);
+
       if(revisao_conteudo === "banco de dados"){
         response.json (
           {
@@ -80,7 +80,8 @@ module.exports = {
                 "text": {
                   "text": [
                     " Questão 1 - O que é um banco de dados? \n"
-                    + "Questão 2 - Quais as formas normais?"
+                    + "Questão 2 - Quais as formas normais?" + revisao_conteudo
+                  
                   ],
                 },
               },
