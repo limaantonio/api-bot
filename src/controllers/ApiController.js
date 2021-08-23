@@ -51,61 +51,6 @@ module.exports = {
       )
     }
 
-    if (intentName === 'revisao') {
-      var revisao_conteudo = request.body.queryResult.parameters['revisao-conteudo'];
-      var teste = "testee";
-      response.json (
-        {
-          "fulfillmentMessages": [
-            {
-              "text": {
-                "text": [
-                 "dfjk" + revisao_conteudo
-                ],
-              },
-            },
-          ]
-        }
-      );
-
-      
-    }
-
-    if (intentName === 'revisao.quiz-yes') {
-      var revisao_conteudo = request.body.queryResult.parameters['revisao-conteudo'];
-
-      if(revisao_conteudo === "banco de dados"){
-        response.json (
-          {
-            "fulfillmentMessages": [
-              {
-                "text": {
-                  "text": [
-                    " Questão 1 - O que é um banco de dados? \n"
-                    + "Questão 2 - Quais as formas normais?" + revisao_conteudo + teste
-                  
-                  ],
-                },
-              },
-            ]
-          }
-        );
-      } else {
-        response.json (
-          {
-            "fulfillmentMessages": [
-              {
-                "text": {
-                  "text": [
-                    "Error"+revisao_conteudo + teste
-                  ]
-                }
-              }
-            ]
-          }
-        )
-      }
-    }
-
+   
   }
  }
