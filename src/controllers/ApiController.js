@@ -52,7 +52,7 @@ module.exports = {
     }
 
     if (intentName === 'revisao') {
-      let revisao_conteudo = request.body.queryResult.parameters['revisao-conteudo'];
+      var revisao_conteudo = request.body.queryResult.parameters['revisao-conteudo'];
       response.json (
         {
           "fulfillmentMessages": [
