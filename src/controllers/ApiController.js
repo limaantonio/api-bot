@@ -1,8 +1,8 @@
 const Action = require('../models/Action')
 const Alunos = require('../models/Alunos')
 var buscaCep = require('busca-cep');
-
 const { calendar } = require('googleapis/build/src/apis/calendar');
+
 const google = require('googleapis');
 const calendarId = "ebn3efcah9qnu6bpbaje6dgme8@group.calendar.google.com";
 const serviceAccount = {
@@ -26,7 +26,7 @@ const serviceAccountAuth = new google.Auth.JWT({
   scopes: 'https://www.googleapis.com/auth/calendar'
 });
 
-const calendar = google.calendar('v3');
+//const calendar = google.calendar('v3');
 
 module.exports = {
 
