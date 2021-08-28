@@ -81,7 +81,7 @@ module.exports = {
 
       //let cliente = request.body.queryResult.outputContexts[1].parameter['aluno_nome'];
 
-      let descricao = request.body.queryResult.parameters['aluno_nome'];
+      let cliente = request.body.queryResult.parameters['aluno_nome'];
       let descricao = request.body.queryResult.parameters['descricao'];
       let data = request.body.queryResult.parameters['data'];
       let hora  = request.body.queryResult.parameters['hora'];
