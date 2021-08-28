@@ -74,32 +74,35 @@ module.exports = {
         reponse.json({'fulfillmentText':mensagem});
       });
     }
+
+    function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, tipo, client) {
+      return new Promise ((resolve, rejesct) => {
+        calendar.events.list({
+          auth: serviceAccountAuth,
+          calendarId: calendarId,
+          timeMin: dateTimeStart.toISOString(),
+          timeMax: dateTimeEnd.toISOString()
+          
+        }, (err, calendarReponse) => {
+          if (err || calendarReponse.data.items.length > 0) {
+            rejesct (err || new Error('Requisicao conflita com outro agendamentos'));
+  
+          } else {
+            calendar.events.insert({auth: serviceAccountAuth,
+            calendarId: calendarId,
+            resource: {summary: descricao +'-'+tipo+'-', description: '['+cliente+']['+descricao+']['+tipo+']',
+              start: {dateTime: dateTimeEnd},
+              end: {dataTime: dateTimeEnd}}
+            }, (err, event) => {
+              err ? rejesct(err) : resolve(evente);
+              }
+            );
+          }
+        })
+      })
+    }
+  
   }
  }
 
- function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, tipo, client) {
-    return new Promise ((resolve, rejesct) => {
-      calendar.events.list({
-        auth: serviceAccountAuth,
-        calendarId: calendarId,
-        timeMin: dateTimeStart.toISOString(),
-        timeMax: dateTimeEnd.toISOString()
-        
-      }, (err, calendarReponse) => {
-        if (err || calendarReponse.data.items.length > 0) {
-          rejesct (err || new Error('Requisicao conflita com outro agendamentos'));
-
-        } else {
-          calendar.events.insert({auth: serviceAccountAuth,
-          calendarId: calendarId,
-          resource: {summary: descricao +'-'+tipo+'-', description: '['+cliente+']['+descricao+']['+tipo+']',
-            start: {dateTime: dateTimeEnd},
-            end: {dataTime: dateTimeEnd}}
-          }, (err, event) => {
-            err ? rejesct(err) : resolve(evente);
-            }
-          );
-        }
-      })
-    })
-  }
+ 
