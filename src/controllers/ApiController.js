@@ -86,6 +86,8 @@ module.exports = {
       let data = request.body.queryResult.parameters['data'];
       let hora  = request.body.queryResult.parameters['hora'];
 
+      console.log("essa é a data"+data);
+
       const dateTimeStart = new Date(Date.parameters(data.split('T')[0] + 'T' + hora.split('T')[1].split('-')[0] + timeZoneOffset));
       const dateTimeEnd = new Date(new Date(dateTimeStart).setHours(dateTimeStart.getHours() + 1));
       const agendamentoString = formatDate(new date(data.split('T')) + " as "+hora.split('T')[1].split('-')[0]);
@@ -99,35 +101,34 @@ module.exports = {
         let mensagem = `Descuple, não temos mais vaga para ${agendamentoString}.`;
         reponse.json({'fulfillmentText':mensagem});
       });
-    }
 
-    function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, tipo, client) {
-      return new Promise ((resolve, rejesct) => {
-        calendar.events.list({
-          auth: serviceAccountAuth,
-          calendarId: calendarId,
-          timeMin: dateTimeStart.toISOString(),
-          timeMax: dateTimeEnd.toISOString()
-          
-        }, (err, calendarReponse) => {
-          if (err || calendarReponse.data.items.length > 0) {
-            rejesct (err || new Error('Requisicao conflita com outro agendamentos'));
-  
-          } else {
-            calendar.events.insert({auth: serviceAccountAuth,
+      function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, tipo, client) {
+        return new Promise ((resolve, rejesct) => {
+          calendar.events.list({
+            auth: serviceAccountAuth,
             calendarId: calendarId,
-            resource: {summary: descricao +'-'+tipo+'-', description: '['+cliente+']['+descricao+']['+tipo+']',
-              start: {dateTime: dateTimeEnd},
-              end: {dataTime: dateTimeEnd}}
-            }, (err, event) => {
-              err ? rejesct(err) : resolve(evente);
-              }
-            );
-          }
+            timeMin: dateTimeStart.toISOString(),
+            timeMax: dateTimeEnd.toISOString()
+            
+          }, (err, calendarReponse) => {
+            if (err || calendarReponse.data.items.length > 0) {
+              rejesct (err || new Error('Requisicao conflita com outro agendamentos'));
+    
+            } else {
+              calendar.events.insert({auth: serviceAccountAuth,
+              calendarId: calendarId,
+              resource: {summary: descricao +'-'+tipo+'-', description: '['+cliente+']['+descricao+']['+tipo+']',
+                start: {dateTime: dateTimeEnd},
+                end: {dataTime: dateTimeEnd}}
+              }, (err, event) => {
+                err ? rejesct(err) : resolve(evente);
+                }
+              );
+            }
+          })
         })
-      })
+      }
     }
-  
   }
  }
 
