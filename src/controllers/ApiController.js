@@ -131,8 +131,18 @@ module.exports = {
           })
         })
       }
+
+      function formatDate(date) {
+        var nomeMes = [
+          "Janeiro", "Fevereiro", "Março",
+          "Abril", "Maio", "Junho", "Julho",
+          "Agosto", "Setembro", "Outubro",
+          "Novembro", "Dezembro"
+        ];
+     
+        return dia + ' ' + nomeMes(mesIndex) + ' ' + ano;
+      }
     }
   }
  }
 
- 
