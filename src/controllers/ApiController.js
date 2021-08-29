@@ -81,6 +81,17 @@ module.exports = {
 
       //let cliente = request.body.queryResult.outputContexts[1].parameter['aluno_nome'];
 
+      function formatDate(date) {
+        var nomeMes = [
+          "Janeiro", "Fevereiro", "Março",
+          "Abril", "Maio", "Junho", "Julho",
+          "Agosto", "Setembro", "Outubro",
+          "Novembro", "Dezembro"
+        ];
+     
+        return dia + ' ' + nomeMes(mesIndex) + ' ' + ano;
+      }
+
       var cliente = request.body.queryResult.parameters['aluno_nome'];
       var descricao = request.body.queryResult.parameters['descricao'];
       var data = request.body.queryResult.parameters['data'];
@@ -93,7 +104,7 @@ module.exports = {
 
       const dateTimeStart = new Date(Date.parse(data.split('T')[0] + 'T' + hora.split('T')[1].split('-')[0] + timeZoneOffset));
       const dateTimeEnd = new Date(new Date(dateTimeStart).setHours(dateTimeStart.getHours() + 1));
-      const agendamentoString = formatDate(new data(data.split('T')) + " as "+hora.split('T')[1].split('-')[0]);
+      const agendamentoString = formatDate(new date(data.split('T')) + " as "+hora.split('T')[1].split('-')[0]);
 
 
       return criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, tipo, cliente).then(() => {
@@ -132,16 +143,7 @@ module.exports = {
         })
       }
 
-      function formatDate(date) {
-        var nomeMes = [
-          "Janeiro", "Fevereiro", "Março",
-          "Abril", "Maio", "Junho", "Julho",
-          "Agosto", "Setembro", "Outubro",
-          "Novembro", "Dezembro"
-        ];
      
-        return dia + ' ' + nomeMes(mesIndex) + ' ' + ano;
-      }
     }
   }
  }
