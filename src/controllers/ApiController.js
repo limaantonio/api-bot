@@ -94,7 +94,7 @@ module.exports = {
       const agendamentoString = formatDate(new Date(data.split('T')[0])) + " as "+hora.split('T')[1].split('-')[0];
 
 
-      return criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, tipo, cliente).then(() => {
+      return criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, cliente).then(() => {
         let mensagem = `Execelente seu serviço esta agendado para ${agendamentoString}`;
         console.log(mensagem);
         response.json({"fulfillmentText":mensagem});
@@ -103,7 +103,7 @@ module.exports = {
         response.json({'fulfillmentText':mensagem});
       });
 
-      function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, tipo, cliente) {
+      function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, cliente) {
         return new Promise ((resolve, rejesct) => {
           calendar.events.list({
             auth: serviceAccountAuth,
@@ -118,7 +118,7 @@ module.exports = {
             } else {
               calendar.events.insert({auth: serviceAccountAuth,
               calendarId: calendarId,
-              resource: {summary: descricao +'-'+tipo+'-', description: '['+cliente+']['+descricao+']['+tipo+']',
+              resource: {summary: descricao +'-', description: '['+cliente+']['+descricao+']',
                 start: {dateTime: dateTimeEnd},
                 end: {dataTime: dateTimeEnd}}
               }, (err, event) => {
