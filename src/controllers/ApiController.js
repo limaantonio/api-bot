@@ -81,16 +81,7 @@ module.exports = {
 
       //let cliente = request.body.queryResult.outputContexts[1].parameter['aluno_nome'];
 
-      function formatDate(date) {
-        var nomeMes = [
-          "Janeiro", "Fevereiro", "Março",
-          "Abril", "Maio", "Junho", "Julho",
-          "Agosto", "Setembro", "Outubro",
-          "Novembro", "Dezembro"
-        ];
-     
-        return dia + ' ' + nomeMes(mesIndex) + ' ' + ano;
-      }
+      
 
       var cliente = request.body.queryResult.parameters['aluno_nome'];
       var descricao = request.body.queryResult.parameters['descricao'];
@@ -142,7 +133,20 @@ module.exports = {
           })
         })
       }
+      function formatDate(date) {
+        var nomeMes = [
+          "Janeiro", "Fevereiro", "Março",
+          "Abril", "Maio", "Junho", "Julho",
+          "Agosto", "Setembro", "Outubro",
+          "Novembro", "Dezembro"
+        ];
 
+        var dia = date.getDate();
+        var mesIndex = date.getMonth();
+        var ano = date.getFullYear();
+     
+        return dia + ' ' + nomeMes(mesIndex) + ' ' + ano;
+      }
      
     }
   }
