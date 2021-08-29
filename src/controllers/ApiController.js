@@ -89,10 +89,6 @@ module.exports = {
       var hora  = request.body.queryResult.parameters['hora'];
       request.body.queryResult.parameters['aluno-nome'];
 
-      console.log("essa é a data"+data);
-      console.log("essa é a hora"+hora);
-      console.log("essa é a descricao"+descricao);
-
       const dateTimeStart = new Date(Date.parse(data.split('T')[0] + 'T' + hora.split('T')[1].split('-')[0] + timeZoneOffset));
       const dateTimeEnd = new Date(new Date(dateTimeStart).setHours(dateTimeStart.getHours() + 1));
       const agendamentoString = formatDate(new Date(data.split('T')[0])) + " as "+hora.split('T')[1].split('-')[0];
@@ -104,7 +100,7 @@ module.exports = {
         response.json({"fulfillmentText":mensagem});
       }).catch(() => {
         let mensagem = `Descuple, não temos mais vaga para ${agendamentoString}.`;
-        reponse.json({'fulfillmentText':mensagem});
+        response.json({'fulfillmentText':mensagem});
       });
 
       function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, tipo, cliente) {
