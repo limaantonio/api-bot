@@ -87,6 +87,8 @@ module.exports = {
       let hora  = request.body.queryResult.parameters['hora'];
 
       console.log("essa é a data"+data);
+      console.log("essa é a hora"+hora);
+      console.log("essa é a descricao"+descricao);
 
       const dateTimeStart = new Date(Date.parameters(data.split('T')[0] + 'T' + hora.split('T')[1].split('-')[0] + timeZoneOffset));
       const dateTimeEnd = new Date(new Date(dateTimeStart).setHours(dateTimeStart.getHours() + 1));
