@@ -91,7 +91,7 @@ module.exports = {
       console.log("essa é a hora"+hora);
       console.log("essa é a descricao"+descricao);
 
-      const dateTimeStart = new Date(Date.parameters(data.split('T')[0] + 'T' + hora.split('T')[1].split('-')[0] + timeZoneOffset));
+      const dateTimeStart = new Date(Date.parse(data.split('T')[0] + 'T' + hora.split('T')[1].split('-')[0] + timeZoneOffset));
       const dateTimeEnd = new Date(new Date(dateTimeStart).setHours(dateTimeStart.getHours() + 1));
       const agendamentoString = formatDate(new date(data.split('T')) + " as "+hora.split('T')[1].split('-')[0]);
 
