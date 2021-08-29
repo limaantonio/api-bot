@@ -77,14 +77,15 @@ module.exports = {
           ]
         }
       )
-    } else if (intentName === 'agendamento') {
+    } else if (intentName === 'agendamento - yes') {
 
       //let cliente = request.body.queryResult.outputContexts[1].parameter['aluno_nome'];
 
-      let cliente = request.body.queryResult.parameters['aluno_nome'];
-      let descricao = request.body.queryResult.parameters['descricao'];
-      let data = request.body.queryResult.parameters['data'];
-      let hora  = request.body.queryResult.parameters['hora'];
+      var cliente = request.body.queryResult.parameters['aluno_nome'];
+      var descricao = request.body.queryResult.parameters['descricao'];
+      var data = request.body.queryResult.parameters['data'];
+      var hora  = request.body.queryResult.parameters['hora'];
+      request.body.queryResult.parameters['aluno-nome'];
 
       console.log("essa é a data"+data);
       console.log("essa é a hora"+hora);
