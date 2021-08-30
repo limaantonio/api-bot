@@ -94,11 +94,11 @@ module.exports = {
 
 
       return criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, cliente).then(() => {
-        let mensagem = `Execelente seu serviço esta agendado para ${agendamentoString}`;
+        let mensagem = `Excelente seu serviço esta agendado para ${agendamentoString}`;
         console.log(mensagem);
         response.json({"fulfillmentText":mensagem});
       }).catch(() => {
-        let mensagem = `Descuple, não temos mais vaga para ${agendamentoString}.`;
+        let mensagem = `Desculpe, não temos mais vaga para ${agendamentoString}.`;
         response.json({'fulfillmentText':mensagem});
       });
 
@@ -111,7 +111,7 @@ module.exports = {
             timeMax: dateTimeEnd.toISOString()
             
           }, (err, calendarReponse) => {
-            if (err || calendarReponse.data.items.length > 0) {
+            if (err || calendarReponse.data.itens.length > 0) {
               reject (err || new Error ('Requisicao conflita com outro agendamentos'));
     
             } else {
