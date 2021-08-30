@@ -119,7 +119,7 @@ module.exports = {
               calendar.events.insert({auth: serviceAccountAuth,
               calendarId: calendarId,
               resource: {summary: descricao +'-', description: '['+cliente+']['+descricao+']',
-                start: {dateTime: dateTimeEnd},
+                start: {dateTime: dateTimeStart},
                 end: {dataTime: dateTimeEnd}}
               }, (err, event) => {
                 err ? reject(err) : resolve(event);
