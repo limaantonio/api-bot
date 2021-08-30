@@ -113,7 +113,7 @@ module.exports = {
             
           }, (err, calendarReponse) => {
             if (err || calendarReponse.data.items.length > 0) {
-              rejesct (err || new Error('Requisicao conflita com outro agendamentos'));
+              reject (err || new Error ('Requisicao conflita com outro agendamentos'));
     
             } else {
               calendar.events.insert({auth: serviceAccountAuth,
@@ -122,7 +122,7 @@ module.exports = {
                 start: {dateTime: dateTimeEnd},
                 end: {dataTime: dateTimeEnd}}
               }, (err, event) => {
-                err ? rejesct(err) : resolve(evente);
+                err ? reject(err) : resolve(event);
                 }
               );
             }
