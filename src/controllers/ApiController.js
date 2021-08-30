@@ -142,7 +142,7 @@ module.exports = {
       var mesIndex = date.getMonth();
       var ano = date.getFullYear();
    
-      return dia + ' ' + nomeMes[mesIndex] + ' ' + ano;
+      return dia + '' + nomeMes[mesIndex] + '' + ano;
     }
   }
  }
