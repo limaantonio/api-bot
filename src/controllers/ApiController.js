@@ -87,8 +87,7 @@ module.exports = {
       var descricao = request.body.queryResult.parameters['descricao'];
       var data = request.body.queryResult.parameters['data'];
       var hora  = request.body.queryResult.parameters['hora'];
-      request.body.queryResult.parameters['aluno-nome'];
-
+     
       const dateTimeStart = new Date(Date.parse(data.split('T')[0] + 'T' + hora.split('T')[1].split('-')[0] + timeZoneOffset));
       const dateTimeEnd = new Date(new Date(dateTimeStart).setHours(dateTimeStart.getHours() + 1));
       const agendamentoString = formatDate(new Date(data.split('T')[0])) + " as "+hora.split('T')[1].split('-')[0];
