@@ -104,7 +104,7 @@ module.exports = {
       });
 
       function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, cliente) {
-        return new Promise ((resolve, rejesct) => {
+        return new Promise ((resolve, reject) => {
           calendar.events.list({
             auth: serviceAccountAuth,
             calendarId: calendarId,
