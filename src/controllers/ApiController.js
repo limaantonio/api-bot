@@ -83,10 +83,10 @@ module.exports = {
 
       
 
-      var cliente = request.body.queryResult.parameters['aluno_nome'];
-      var descricao = request.body.queryResult.parameters['descricao'];
-      var data = request.body.queryResult.parameters['data'];
-      var hora  = request.body.queryResult.parameters['hora'];
+      let cliente = request.body.queryResult.parameters['aluno_nome'];
+      let descricao = request.body.queryResult.parameters['descricao'];
+      let data = request.body.queryResult.parameters['data'];
+      let hora  = request.body.queryResult.parameters['hora'];
      
       const dateTimeStart = new Date(Date.parse(data.split('T')[0] + 'T' + hora.split('T')[1].split('-')[0] + timeZoneOffset));
       const dateTimeEnd = new Date(new Date(dateTimeStart).setHours(dateTimeStart.getHours() + 1));
@@ -98,9 +98,12 @@ module.exports = {
         console.log(mensagem);
         response.json({"fulfillmentText":mensagem});
       }).catch(() => {
+        console.log("datetimeStart"+dateTimeStart);
+        console.log("datetimeEnd"+dateTimeEnd);
         let mensagem = `Desculpe, não temos mais vaga para ${agendamentoString}.`;
         response.json({"fulfillmentText":mensagem});
       });
+
     }
 
     function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, cliente) {
@@ -142,7 +145,7 @@ module.exports = {
       var mesIndex = date.getMonth();
       var ano = date.getFullYear();
    
-      return dia + '' + nomeMes[mesIndex] + '' + ano;
+      return dia + ' ' + nomeMes[mesIndex] + ' ' + ano;
     }
   }
  }
