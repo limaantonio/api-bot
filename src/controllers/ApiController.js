@@ -1,7 +1,7 @@
 const Action = require('../models/Action')
 const Alunos = require('../models/Alunos')
 var buscaCep = require('busca-cep');
-const { calendar, auth } = require('googleapis/build/src/apis/calendar');
+const { calendar_v3, auth } = require('googleapis/build/src/apis/calendar');
 
 const google = require('googleapis');
 const calendarId = process.env.ID_AGENDA;
