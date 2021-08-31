@@ -107,6 +107,7 @@ module.exports = {
     }
 
     function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, cliente) {
+      console.log('cheguei aqui')
       return new Promise ((resolve, reject) => {
         calendar.events.list({
           auth: serviceAccountAuth,
