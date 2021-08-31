@@ -1,7 +1,7 @@
 const Action = require('../models/Action')
 const Alunos = require('../models/Alunos')
 var buscaCep = require('busca-cep');
-const { calendar } = require('googleapis/build/src/apis/calendar');
+const { calendar, auth } = require('googleapis/build/src/apis/calendar');
 
 const google = require('googleapis');
 const calendarId = process.env.ID_AGENDA;
@@ -79,7 +79,7 @@ module.exports = {
       )
     } else if (intentName === 'agendamento - yes') {
 
-      //let cliente = request.body.queryResult.outputContexts[1].parameter['aluno_nome'];
+      //let cliente = request.body.queryResult.outputContexts[1].parameter['aluno_nome'];intent pai
 
       
 
@@ -113,12 +113,15 @@ module.exports = {
           calendarId: calendarId,
           timeMin: dateTimeStart.toISOString(),
           timeMax: dateTimeEnd.toISOString()
+
+        
           
         }, (err, calendarReponse) => {
-          if (err || calendarReponse.data.itens.length > 0) {
+          if (err || calendarReponse.data.items.length > 0) {
             reject (err || new Error ('Requisicao conflita com outro agendamentos'));
   
           } else {
+            console.log(auth);
             calendar.events.insert({auth: serviceAccountAuth,
             calendarId: calendarId,
             resource: {summary: descricao +'-', description: '['+cliente+']['+descricao+']',
@@ -126,6 +129,7 @@ module.exports = {
               end: {dataTime: dateTimeEnd}}
             }, (err, event) => {
               err ? reject(err) : resolve(event);
+              console.log(err)
               }
             );
           }
