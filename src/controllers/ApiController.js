@@ -3,7 +3,7 @@ const Alunos = require('../models/Alunos')
 var buscaCep = require('busca-cep');
 const { auth } = require('googleapis/build/src/apis/calendar');
 
-const google = require('googleapis');
+const {google} = require('googleapis');
 const calendarId = process.env.ID_AGENDA;
 const serviceAccount = {
   "type": "service_account",
@@ -20,7 +20,7 @@ const serviceAccount = {
 
 const timeZoneOffset = '-03:00';
 
-const serviceAccountAuth = new google.Auth.JWT({
+const serviceAccountAuth = new google.auth.JWT({
   email: serviceAccount.client_email,
   key: serviceAccount.private_key,
   scopes: 'https://www.googleapis.com/auth/calendar'
