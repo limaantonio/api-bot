@@ -131,7 +131,7 @@ module.exports = {
 
  function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, cliente) {
   return new Promise ((resolve, reject) => {
-    calendar.events.list({
+    calendar_v3.events.list({
       auth: serviceAccountAuth,
       calendarId: calendarId,
       timeMin: dateTimeStart.toISOString(),
