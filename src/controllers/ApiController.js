@@ -1,7 +1,7 @@
 const Action = require('../models/Action')
 const Alunos = require('../models/Alunos')
 var buscaCep = require('busca-cep');
-const { calendar_v3 , auth } = require('googleapis/build/src/apis/calendar');
+const { auth } = require('googleapis/build/src/apis/calendar');
 
 const google = require('googleapis');
 const calendarId = process.env.ID_AGENDA;
@@ -26,7 +26,7 @@ const serviceAccountAuth = new google.Auth.JWT({
   scopes: 'https://www.googleapis.com/auth/calendar'
 });
 
-//const calendar = google.calendar('v3');
+const calendar = google.calendar('v3');
 
 module.exports = {
 
@@ -103,18 +103,42 @@ module.exports = {
         let mensagem = `Desculpe, não temos mais vaga para ${agendamentoString}.`;
         response.json({"fulfillmentText":mensagem});
       });
+      
     }
-
-    
-
-   
   }
+}
 
-  
 
- }
+function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, cliente) {
+  return new Promise ((resolve, reject) => {
+    calendar.events.list({
+      auth: serviceAccountAuth,
+      calendarId: calendarId,
+      timeMin: dateTimeStart.toISOString(),
+      timeMax: dateTimeEnd.toISOString()
+      
+    }, (err, calendarResponse) => {
+      if (err || calendarResponse.data.items.length > 0) {
+        reject (err || new Error ('Requisicao conflita com outro agendamentos'));
 
- function formatDate(date) {
+      } else {
+        console.log(auth);
+        calendar.events.insert({auth: serviceAccountAuth,
+        calendarId: calendarId,
+        resource: {summary: descricao +'-', description: '['+cliente+']['+descricao+']',
+          start: {dateTime: dateTimeStart},
+          end: {dataTime: dateTimeEnd}}
+        }, (err, event) => {
+          err ? reject(err) : resolve(event);
+          console.log(err)
+          }
+        );
+      }
+    })
+  })
+}
+
+function formatDate(date) {
   var nomeMes = [
     "Janeiro", "Fevereiro", "Março",
     "Abril", "Maio", "Junho", "Julho",
@@ -129,33 +153,3 @@ module.exports = {
   return dia + ' ' + nomeMes[mesIndex] + ' ' + ano;
 }
 
- function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, cliente) {
-  return new Promise ((resolve, reject) => {
-    calendar_v3.events.list({
-      auth: serviceAccountAuth,
-      calendarId: calendarId,
-      timeMin: dateTimeStart.toISOString(),
-      timeMax: dateTimeEnd.toISOString()
-
-    
-      
-    }, (err, calendarResponse) => {
-      if (err || calendarResponse.data.items.length > 0) {
-        reject (err || new Error ('Requisicao conflita com outro agendamentos'));
-
-      } else {
-        console.log(auth);
-        calendar_v3.events.insert({auth: serviceAccountAuth,
-        calendarId: calendarId,
-        resource: {summary: descricao +'-', description: '['+cliente+']['+descricao+']',
-          start: {dateTime: dateTimeStart},
-          end: {dataTime: dateTimeEnd}}
-        }, (err, event) => {
-          err ? reject(err) : resolve(event);
-          console.log(err)
-          }
-        );
-      }
-    })
-  })
-}
