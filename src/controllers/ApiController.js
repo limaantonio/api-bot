@@ -83,7 +83,7 @@ module.exports = {
 
       
 
-      let cliente = request.body.queryResult.parameters['aluno_nome'];
+      let aluno_nome = request.body.queryResult.parameters['aluno_nome'];
       let descricao = request.body.queryResult.parameters['descricao'];
       let data = request.body.queryResult.parameters['data'];
       let hora  = request.body.queryResult.parameters['hora'];
@@ -93,7 +93,7 @@ module.exports = {
       const agendamentoString = formatDate(new Date(data.split('T')[0])) + " as "+hora.split('T')[1].split('-')[0];
 
 
-      return criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, cliente).then(() => {
+      return criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, aluno_nome).then(() => {
         let mensagem = `Excelente seu serviço esta agendado para ${agendamentoString}`;
         console.log(mensagem);
         response.json({"fulfillmentText":mensagem});
@@ -109,7 +109,7 @@ module.exports = {
 }
 
 
-function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, cliente) {
+function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, aluno_nome) {
   return new Promise ((resolve, reject) => {
     calendar.events.list({
       auth: serviceAccountAuth,
@@ -125,7 +125,7 @@ function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, cliente) {
         console.log(auth);
         calendar.events.insert({auth: serviceAccountAuth,
         calendarId: calendarId,
-        resource: {summary: descricao +'-', description: '['+cliente+']['+descricao+']',
+        resource: {summary: descricao +'-', description: '['+aluno_nome+']['+descricao+']',
           start: {dateTime: dateTimeStart},
           end: {dataTime: dateTimeEnd}}
         }, (err, event) => {
