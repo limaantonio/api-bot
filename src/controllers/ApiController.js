@@ -130,7 +130,6 @@ module.exports = {
 }
 
  function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, cliente) {
-  console.log('cheguei aqui')
   return new Promise ((resolve, reject) => {
     calendar.events.list({
       auth: serviceAccountAuth,
@@ -140,8 +139,8 @@ module.exports = {
 
     
       
-    }, (err, calendarReponse) => {
-      if (err || calendarReponse.data.items.length > 0) {
+    }, (err, calendarResponse) => {
+      if (err || calendarResponse.data.items.length > 0) {
         reject (err || new Error ('Requisicao conflita com outro agendamentos'));
 
       } else {
