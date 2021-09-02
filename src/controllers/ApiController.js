@@ -129,17 +129,17 @@ function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, aluno_nome
       } else {
         console.log(auth);
         calendar.events.insert({auth: serviceAccountAuth,
-        calendarId: calendarId,
-        resource: {summary: descricao +'-', description: '['+aluno_nome+']['+descricao+']',
-          start: {dateTime: dateTimeStart.toISOString()},
-          end: {dataTime: dateTimeEnd.toISOString()}}
-          
-        }, (err, event) => {
-          err ? reject(err) : resolve(event);
-          console.log(err)
-          console.log("testedatat" +dateTimeStart.toISOString())
-          }
-        );
+          calendarId: calendarId,
+          resource: {summary: descricao +'-', description: '['+aluno_nome+']['+descricao+']',
+            start: {dateTime: dateTimeStart},
+            end: {dateTime: dateTimeEnd}}
+            
+          }, (err, event) => {
+            err ? reject(err) : resolve(event);
+            console.log(err)
+            console.log("testedatat" +dateTimeStart.toISOString())
+            }
+          );
       }
       
     })
