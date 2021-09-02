@@ -2,9 +2,12 @@ const Action = require('../models/Action')
 const Alunos = require('../models/Alunos')
 var buscaCep = require('busca-cep');
 const { auth } = require('googleapis/build/src/apis/calendar');
-
 const {google} = require('googleapis');
+
+const calendar = google.calendar('v3');
+
 const calendarId = process.env.ID_AGENDA;
+
 const serviceAccount = {
   "type": "service_account",
   "project_id": "assistenteestudantil-imel",
@@ -26,12 +29,8 @@ const serviceAccountAuth = new google.auth.JWT({
   scopes: 'https://www.googleapis.com/auth/calendar'
 });
 
-const calendar = google.calendar('v3');
-
 module.exports = {
 
-
-    
   async fulfillmentText(request, response){
     var intentName = request.body.queryResult.intent.displayName;
 
@@ -62,8 +61,9 @@ module.exports = {
       } catch (error) {
           return response.json(error)
       }
-    } else if (intentName === 'onboarding.aluno-no') {
-      
+    } 
+    
+    if (intentName === 'onboarding.aluno-no') {      
       response.json (
         {
           "fulfillmentMessages": [
@@ -77,11 +77,29 @@ module.exports = {
           ]
         }
       )
-    } else if (intentName === 'agendamento - yes') {
+    }
+    
+    if (intentName === 'revisao.quiz - yes') {
+      let conteudo = request.body.queryResult.outputContexts[1].parameter['revisao-conteudo'];
+      
+      response.json (
+        {
+          "fulfillmentMessages": [
+            {
+              "text": [
+                `Aqui está um Quiz sobre ${revisao-conteudo}:/n`
+                + "Questão 1 - O que é um banco de dados?/n"
+                + "Questão 2 - Quais as formas normais?"
+              ]
+            }
+          ]
+        }
+      )
+    }
+    
+    if (intentName === 'agendamento - yes') {
 
       //let cliente = request.body.queryResult.outputContexts[1].parameter['aluno_nome'];intent pai
-
-      
 
       let aluno_nome = request.body.queryResult.parameters['aluno_nome'];
       let descricao = request.body.queryResult.parameters['descricao'];
@@ -92,59 +110,46 @@ module.exports = {
       const dateTimeEnd = new Date(new Date(dateTimeStart).setHours(dateTimeStart.getHours() + 1));
       const agendamentoString = formatDate(new Date(data.split('T')[0])) + " as "+hora.split('T')[1].split('-')[0];
 
-
       return criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, aluno_nome).then(() => {
         let mensagem = `Excelente seu serviço esta agendado para ${agendamentoString}`;
         console.log(mensagem);
         response.json({"fulfillmentText":mensagem});
       }).catch(() => {
-        console.log("datetimeStart"+dateTimeStart);
-        console.log("datetimeEnd"+dateTimeEnd);
-        console.log("iso  "+dateTimeEnd.toISOString());
         let mensagem = `Desculpe, não temos mais vaga para ${agendamentoString}.`;
         response.json({"fulfillmentText":mensagem});
       });
-      
-      
     }
   }
 }
 
 
 function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, aluno_nome) {
- 
+
   return new Promise ((resolve, reject) => {
     calendar.events.list({
       auth: serviceAccountAuth,
       calendarId: calendarId,
       timeMin: dateTimeStart.toISOString(),
       timeMax: dateTimeEnd.toISOString()
-     
-      
     }, (err, calendarResponse) => {
      
-      if (err || calendarResponse.data.items.length > 0) {
-        reject (err || new Error ('Requisicao conflita com outro agendamentos'));
+    if (err || calendarResponse.data.items.length > 0) {
+      reject (err || new Error ('Requisicao conflita com outro agendamentos'));
 
-      } else {
-        console.log(auth);
-        calendar.events.insert({auth: serviceAccountAuth,
-          calendarId: calendarId,
-          resource: {summary: descricao +'-', description: '['+aluno_nome+']['+descricao+']',
-            start: {dateTime: dateTimeStart},
-            end: {dateTime: dateTimeEnd}}
-            
-          }, (err, event) => {
+    } else {
+      calendar.events.insert({auth: serviceAccountAuth,
+        calendarId: calendarId,
+        resource: {summary: descricao +'-', description: '['+aluno_nome+']['+descricao+']',
+          start: {dateTime: dateTimeStart},
+          end: {dateTime: dateTimeEnd}}
+          
+        }, (err, event) => {
             err ? reject(err) : resolve(event);
-            console.log(err)
-            console.log("testedatat" +dateTimeStart.toISOString())
-            }
-          );
-      }
-      
-    })
+          }
+      );
+    }
   })
-}
+})}
 
 function formatDate(date) {
   var nomeMes = [
