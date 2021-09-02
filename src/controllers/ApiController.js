@@ -137,7 +137,7 @@ function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, aluno_nome
         }, (err, event) => {
           err ? reject(err) : resolve(event);
           console.log(err)
-          console.log("testedatat" +dateTimeStart)
+          console.log("testedatat" +dateTimeStart.toISOString())
           }
         );
       }
