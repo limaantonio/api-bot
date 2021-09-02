@@ -18,7 +18,7 @@ const serviceAccount = {
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/assistenteestudantilcalendar%40assistenteestudantil-imel.iam.gserviceaccount.com"
 }
 
-const timeZoneOffset = '-03:00';
+const timeZoneOffset = '-03:00Z';
 
 const serviceAccountAuth = new google.auth.JWT({
   email: serviceAccount.client_email,
