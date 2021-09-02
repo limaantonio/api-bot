@@ -133,9 +133,11 @@ function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, aluno_nome
         resource: {summary: descricao +'-', description: '['+aluno_nome+']['+descricao+']',
           start: {dateTime: dateTimeStart},
           end: {dataTime: dateTimeEnd}}
+          
         }, (err, event) => {
           err ? reject(err) : resolve(event);
           console.log(err)
+          console.log("testedatat" +dateTimeStart)
           }
         );
       }
