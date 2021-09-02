@@ -80,7 +80,7 @@ module.exports = {
     }
     
     if (intentName === 'revisao.quiz - yes') {
-      let conteudo = request.body.queryResult.outputContexts[1].parameter['revisao-conteudo'];
+      let conteudo = request.body.queryResult.outputContexts[1].parameters['revisao-conteudo'];
       
       response.json (
         {
