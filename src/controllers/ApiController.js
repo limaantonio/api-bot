@@ -111,6 +111,7 @@ module.exports = {
 
 
 function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, aluno_nome) {
+  console.log(dateTimeEnd.toISOString());
   return new Promise ((resolve, reject) => {
     calendar.events.list({
       auth: serviceAccountAuth,
@@ -120,7 +121,7 @@ function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, aluno_nome
      
       
     }, (err, calendarResponse) => {
-      console.log(timeMax);
+     
       if (err || calendarResponse.data.items.length > 0) {
         reject (err || new Error ('Requisicao conflita com outro agendamentos'));
 
@@ -137,6 +138,7 @@ function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, aluno_nome
           }
         );
       }
+      
     })
   })
 }
