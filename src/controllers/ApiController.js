@@ -131,8 +131,8 @@ function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, aluno_nome
         calendar.events.insert({auth: serviceAccountAuth,
         calendarId: calendarId,
         resource: {summary: descricao +'-', description: '['+aluno_nome+']['+descricao+']',
-          start: {dateTime: dateTimeStart},
-          end: {dataTime: dateTimeEnd}}
+          start: {dateTime: dateTimeStart.toISOString()},
+          end: {dataTime: dateTimeEnd.toISOString()}}
           
         }, (err, event) => {
           err ? reject(err) : resolve(event);
