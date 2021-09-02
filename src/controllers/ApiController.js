@@ -100,6 +100,7 @@ module.exports = {
       }).catch(() => {
         console.log("datetimeStart"+dateTimeStart);
         console.log("datetimeEnd"+dateTimeEnd);
+        console.log("iso  "+dateTimeEnd.toISOString());
         let mensagem = `Desculpe, não temos mais vaga para ${agendamentoString}.`;
         response.json({"fulfillmentText":mensagem});
       });
@@ -111,7 +112,7 @@ module.exports = {
 
 
 function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, aluno_nome) {
-  console.log(dateTimeEnd.toISOString());
+ 
   return new Promise ((resolve, reject) => {
     calendar.events.list({
       auth: serviceAccountAuth,
