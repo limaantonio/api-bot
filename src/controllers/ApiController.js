@@ -104,6 +104,7 @@ module.exports = {
         response.json({"fulfillmentText":mensagem});
       });
       
+      
     }
   }
 }
@@ -116,8 +117,10 @@ function criarEventoCalendario(dateTimeStart, dateTimeEnd, descricao, aluno_nome
       calendarId: calendarId,
       timeMin: dateTimeStart.toISOString(),
       timeMax: dateTimeEnd.toISOString()
+     
       
     }, (err, calendarResponse) => {
+      console.log(timeMax);
       if (err || calendarResponse.data.items.length > 0) {
         reject (err || new Error ('Requisicao conflita com outro agendamentos'));
 
