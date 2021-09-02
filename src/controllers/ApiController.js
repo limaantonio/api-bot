@@ -87,7 +87,7 @@ module.exports = {
           "fulfillmentMessages": [
             {
               "text": [
-                `Aqui está um Quiz sobre ${revisao-conteudo}:/n`
+                `Aqui está um Quiz sobre ${conteudo}:/n`
                 + "Questão 1 - O que é um banco de dados?/n"
                 + "Questão 2 - Quais as formas normais?"
               ]
