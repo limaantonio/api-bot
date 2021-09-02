@@ -81,16 +81,12 @@ module.exports = {
     
     if (intentName === 'revisao.quiz - yes') {
       let conteudo = request.body.queryResult.outputContexts[1].parameters['revisao-conteudo'];
-      var quiz = `Aqui está um Quiz sobre ${conteudo}:/n`
-        + "Questão 1 - O que é um banco de dados?/n"
-        + "Questão 2 - Quais as formas normais?"
+
+      var quiz = `Aqui está um Quiz sobre ${conteudo}:\n
+        Questão 1 - O que é um banco de dados?\n
+        Questão 2 - Quais as formas normais?`
       
-      
-      response.json (
-        {
-          "fulfillmentMessages": quiz
-        }
-      )
+      response.json ({"fulfillmentText": quiz})
     }
     
     if (intentName === 'agendamento - yes') {
