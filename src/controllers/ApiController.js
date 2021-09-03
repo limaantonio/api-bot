@@ -1,4 +1,4 @@
-const Action = require('../models/Action')
+const Content = require('../models/Content')
 const Alunos = require('../models/Alunos')
 var buscaCep = require('busca-cep');
 const { auth } = require('googleapis/build/src/apis/calendar');
@@ -28,8 +28,6 @@ const serviceAccountAuth = new google.auth.JWT({
   key: serviceAccount.private_key,
   scopes: 'https://www.googleapis.com/auth/calendar'
 });
-
-const conteudoPDF = "https://ik.imagekit.io/dtx0soiaky/Aulas_assincronas_TCC_II_uf7enSmYG.pdf?updatedAt=1630581039769"
 
 module.exports = {
 
@@ -91,28 +89,24 @@ module.exports = {
       response.json ({"fulfillmentText": quiz})
     }
 
-    if (intentName === 'revisao.teste - yes'){
-      //let conteudo = request.body.queryResult.outputContexts[1].parameters['revisao-conteudo'];
+    if (intentName === 'revisao.teste - yes') {
 
-        response.json ({
-          "fulfillmentMessages" : [
-            {
-              "platform": "TELEGRAM", 
-                "text": {
-                  "text": [
-                    conteudoPDF
-                  ]
-                }
-              }
-            ]
-          })
-      
-        // {
-        //   "telegram": {
-        //     "text": "https://ik.imagekit.io/dtx0soiaky/Aulas_assincronas_TCC_II_uf7enSmYG.pdf?updatedAt=1630581039769"
-        //   }
-        // }
+      let content = await Content.find(); 
+
+      response.json ({
+        "fulfillmentMessages" : [
+          {
+            "platform": "TELEGRAM", 
+            "text": {
+              "text": [
+                content[0].data
+              ]
+            }
+          }
+        ]
+      })
     }
+
     //professor configura os horarios de atendimento e o bot negocia
     if (intentName === 'agendamento - yes') {
 
