@@ -97,14 +97,21 @@ module.exports = {
         response.json ({
           "fulfillmentMessages" : [
             {
-              "telegram": {
-                "text": conteudoPDF
+              "platform": "TELEGRAM", 
+                "text": {
+                  "text": [
+                    conteudoPDF
+                  ]
+                }
               }
-            }
-          ]
-        })
+            ]
+          })
       
-      
+        // {
+        //   "telegram": {
+        //     "text": "https://ik.imagekit.io/dtx0soiaky/Aulas_assincronas_TCC_II_uf7enSmYG.pdf?updatedAt=1630581039769"
+        //   }
+        // }
     }
     //professor configura os horarios de atendimento e o bot negocia
     if (intentName === 'agendamento - yes') {
