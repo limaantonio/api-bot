@@ -29,6 +29,8 @@ const serviceAccountAuth = new google.auth.JWT({
   scopes: 'https://www.googleapis.com/auth/calendar'
 });
 
+const conteudoPDF = "https://ik.imagekit.io/dtx0soiaky/Aulas_assincronas_TCC_II_uf7enSmYG.pdf?updatedAt=1630581039769"
+
 module.exports = {
 
   async fulfillmentText(request, response){
@@ -51,7 +53,7 @@ module.exports = {
                 {
                   "text": {
                     "text": [
-                      "Obrigado! Podemos continuar nossa conversa. \n Como posso te ajudar? \n 1 - Revisão \n 2 - Orientação \n 3 - Acompanhamento"
+                      "Obrigado! Podemos continuar nossa conversa. \n Como posso te ajudar? \n Revisão \n Orientação \n Acompanhamento"
                     ],
                   },
                 },
@@ -88,10 +90,24 @@ module.exports = {
       
       response.json ({"fulfillmentText": quiz})
     }
-    
-    if (intentName === 'agendamento - yes') {
 
-      //let cliente = request.body.queryResult.outputContexts[1].parameter['aluno_nome'];intent pai
+    if (intentName === 'revisao.teste - yes'){
+      //let conteudo = request.body.queryResult.outputContexts[1].parameters['revisao-conteudo'];
+
+        response.json ({
+          "fulfillmentMessages" : [
+            {
+              "telegram": {
+                "text": conteudoPDF
+              }
+            }
+          ]
+        })
+      
+      
+    }
+    //professor configura os horarios de atendimento e o bot negocia
+    if (intentName === 'agendamento - yes') {
 
       let aluno_nome = request.body.queryResult.parameters['aluno_nome'];
       let descricao = request.body.queryResult.parameters['descricao'];
