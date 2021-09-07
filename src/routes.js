@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routes = void 0;
+var express_1 = require("express");
+//const ApiController = require("./controllers/ApiController");
+var StudentController_1 = require("./controllers/StudentController");
+var studentController = new StudentController_1.StudentController();
+var routes = (0, express_1.Router)();
+exports.routes = routes;
+//routes.post("/apiwebhook", ApiController.fulfillmentText);
+routes.get("/students", studentController.list);
+routes.post("/student", studentController.create);
